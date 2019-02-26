@@ -1,0 +1,24 @@
+[core]
+    excludesfiles = ~/.gitignore
+[color]
+    ui = auto
+    branch = auto
+    diff = auto
+    interactive = auto
+    status = auto
+[commit]
+    verbose = true
+[pull]
+    rebase = true
+[branch]
+    autosetuprebase = always
+[push]
+    default = simple
+[sendmail]
+    smtpencryption = tls
+    smtpserver = smtp.office365.com
+    smtpserverport = 587
+    smtpuser = alexis.merle@epita.fr
+[user]
+    email = alexis.merle@epita.fr
+    name = alexis.merle
