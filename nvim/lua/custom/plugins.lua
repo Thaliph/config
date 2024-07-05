@@ -1,27 +1,18 @@
-local pluggins = {
+local plugins = {
   {
     "christoomey/vim-tmux-navigator",
     lazy = false,
   },
   {
-    "vim-crystal/vim-crystal",
-    ft = "crystal",
-    config = function(_)
-      vim.g.crystal_auto_format = 1
-    end
-  },
-  {
-    "neovim/nvim-lspconfig",
+    "anuvyklack/pretty-fold.nvim",
+    lazy = false,
     config = function()
-      require "plugins.configs.lspconfig"
-      require "custom.configs.lspconfig"
-    end,
-  },
-  {
+      require("pretty-fold").setup()
+    end
+  },{
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
-        "nginx-language-server",
         "terraform-ls",
         "tflint",
         "tfsec",
@@ -30,9 +21,22 @@ local pluggins = {
         "yamlfmt",
         "yamlfix",
         "helm-ls",
-        "prettier"
-      },
-    },
-  }
+        "prettier",
+        "docker-compose-language-service",
+        "marksman",
+        "snyk-ls",
+        "bashls",
+        "dockerfile-language-server",
+        "hclfmt"
+      }
+    }
+  },{
+    "neovim/nvim-lspconfig",
+    config = function()
+      require "plugins.configs.lspconfig"
+      require "custom.configs.lspconfig"
+    end,
+  },
 }
-return pluggins
+
+return plugins
