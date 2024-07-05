@@ -1,20 +1,13 @@
-local configs = require("plugins.configs.lspconfig")
-local on_attach = configs.on_attach
-local capabilities = configs.capabilities
+local on_attach = require("plugins.configs.lspconfig").on_attach
+local capabilities = require("plugins.configs.lspconfig").capabilities
 
-local lspconfig = require "lspconfig"
-local servers = { "terraformls"}
+local lspconfig = require("lspconfig")
+local util = require "lspconfig/util"
 
-for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-  }
-end
+lspconfig.terraformls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  cmd = {"terraform-ls", "serve"},
+  root_dir = util.root_pattern(".terraform", ".git"),
+}
 
-vim.api.nvim_create_autocmd({"BufWritePre"}, {
-  pattern = {"*.tf", "*.tfvars"},
-  callback = function()
-    vim.lsp.buf.format()
-  end,
-})
